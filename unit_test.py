@@ -1,25 +1,22 @@
 import unittest
 import time
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 
 class TestUnit(unittest.TestCase):
     def __init__(self, methodName: str, original_url: str, expected_url: str, others: dict):
         super().__init__(methodName)
-        self.original_url = original_url
-        self.expected_url = expected_url
+        self.methodName = methodName
+        self.original_url = original_url.strip()
+        self.expected_url = expected_url.strip()
         self.others = others
 
         self.custom_status = {
             "status": None,
             "message": ""
         }
-
-        with open("test_report.log", "a") as f:
-            f.write(f"Initializing test case: {methodName}\n")
-            f.write(f"Original URL: {original_url}\n")
-            f.write(f"Expected URL: {expected_url}\n")
-            f.write("\n"*2)
 
     def setUp(self):
         self.driver = webdriver.Chrome()
@@ -36,7 +33,16 @@ class TestUnit(unittest.TestCase):
 
         return driver
 
-    def test_login(self) -> None:
+    def test_login(self):
+        with open("test_report.log", "a") as f:
+            f.write("="*100 + "\n")
+            f.write(f"Initializing test case: {self.methodName}\n")
+            f.write(f"Original URL: {self.original_url}\n")
+            f.write(f"Expected URL: {self.expected_url}\n")
+            f.write(f"Role: {self.others.get("credentials", {}).get("role", "GUEST")}\n")
+            f.write("\n"*1)
+
+
         driver = self.login()
 
         actual_url = driver.current_url
@@ -52,7 +58,6 @@ class TestUnit(unittest.TestCase):
                 """
             )
 
-
             with open("test_report.log", "a") as f:
                 f.write("TEST PASSED:\n")
                 f.write(f"URL after login is correct: {actual_url}\n")
@@ -64,12 +69,20 @@ class TestUnit(unittest.TestCase):
                 f.write(f"{str(e)}\n")
                 f.write("-"*100 + "\n"*2)
 
-    def test_link_with_login(self) -> None:
+    def test_link_with_login(self):
+        with open("test_report.log", "a") as f:
+            f.write("="*100 + "\n")
+            f.write(f"Initializing test case: {self.methodName}\n")
+            f.write(f"Original URL: {self.original_url}\n")
+            f.write(f"Expected URL: {self.expected_url}\n")
+            f.write(f"Role: {self.others.get("credentials", {}).get("role", "GUEST")}\n")
+            f.write("\n"*1)
+
         driver = self.login()
         
         driver.get(self.original_url)
 
-        driver.find_element(By.ID, self.others.get("id", {}).get("link", "")).click()
+        time.sleep(2)
 
         actual_url = driver.current_url
 
@@ -96,14 +109,22 @@ class TestUnit(unittest.TestCase):
                 f.write("-"*100 + "\n"*2)
 
 
-    def test_link_without_login(self) -> None:
+    def test_link_without_login(self):
+        with open("test_report.log", "a") as f:
+            f.write("="*100 + "\n")
+            f.write(f"Initializing test case: {self.methodName}\n")
+            f.write(f"Original URL: {self.original_url}\n")
+            f.write(f"Expected URL: {self.expected_url}\n")
+            f.write(f"Role: {self.others.get("credentials", {}).get("role", "GUEST")}\n")
+            f.write("\n"*1)
+
         driver = self.driver
+
         driver.get(self.original_url)
 
-        driver.find_element(By.ID, self.others.get("id", {}).get("link", "")).click()
+        time.sleep(2)
 
         actual_url = driver.current_url
-
 
         try:
             self.assertNotEqual(

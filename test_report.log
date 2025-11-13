@@ -1,0 +1,92 @@
+====================================================================================================
+Initializing test case: test_login
+Original URL: 
+Expected URL: http://localhost:8080/NaikiStore/dashboard
+Role: STAFF
+
+TEST PASSED:
+URL after login is correct: http://localhost:8080/NaikiStore/dashboard
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+Initializing test case: test_link_with_login
+Original URL: http://localhost:8080/NaikiStore/
+Expected URL: http://localhost:8080/NaikiStore/
+Role: STAFF
+
+TEST PASSED:
+URL after login is correct: http://localhost:8080/NaikiStore/
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+Initializing test case: test_link_with_login
+Original URL: http://localhost:8080/NaikiStore/cart
+Expected URL: http://localhost:8080/NaikiStore/login
+Role: STAFF
+
+TEST PASSED:
+URL after login is correct: http://localhost:8080/NaikiStore/login
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+Initializing test case: test_link_with_login
+Original URL: http://localhost:8080/NaikiStore/order
+Expected URL: http://localhost:8080/NaikiStore/login
+Role: STAFF
+
+TEST FAILED:
+'http://localhost:8080/NaikiStore/order' != 'http://localhost:8080/NaikiStore/login'
+- http://localhost:8080/NaikiStore/order
+?                                   ^^^^
++ http://localhost:8080/NaikiStore/login
+?                                  + ^^^
+ : 
+                =>>> URL is not correct after Login!
+                The real URL after Login: http://localhost:8080/NaikiStore/order
+                The expected URL after login: http://localhost:8080/NaikiStore/login
+                
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+Initializing test case: test_login
+Original URL: 
+Expected URL: http://localhost:8080/NaikiStore/home
+Role: CUSTOMER
+
+TEST PASSED:
+URL after login is correct: http://localhost:8080/NaikiStore/home
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+Initializing test case: test_link_with_login
+Original URL: http://localhost:8080/NaikiStore/dashboard
+Expected URL: http://localhost:8080/NaikiStore/login
+Role: CUSTOMER
+
+TEST FAILED:
+'http://localhost:8080/NaikiStore/dashboard' != 'http://localhost:8080/NaikiStore/login'
+- http://localhost:8080/NaikiStore/dashboard
+?                                  ^^^^^ ^^^
++ http://localhost:8080/NaikiStore/login
+?                                  ^ ^^^
+ : 
+                =>>> URL is not correct after Login!
+                The real URL after Login: http://localhost:8080/NaikiStore/dashboard
+                The expected URL after login: http://localhost:8080/NaikiStore/login
+                
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+Initializing test case: test_link_without_login
+Original URL: http://localhost:8080/NaikiStore/myvouchers
+Expected URL: http://localhost:8080/NaikiStore/myvouchers
+Role: GUEST
+
+TEST FAILED:
+'http://localhost:8080/NaikiStore/myvouchers' == 'http://localhost:8080/NaikiStore/myvouchers' : 
+                =>>> URL is not correct!
+                The real URL without Login: http://localhost:8080/NaikiStore/myvouchers
+                The expected URL without login: http://localhost:8080/NaikiStore/myvouchers
+                
+----------------------------------------------------------------------------------------------------
+
